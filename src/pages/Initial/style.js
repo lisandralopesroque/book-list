@@ -28,8 +28,8 @@ export const Menu = styled.div`
     }
     li a{
         text-decoration: none;
-        color: #111;
     }
+
      a:hover{
         color:#9600BC;
         cursor: pointer;

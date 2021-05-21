@@ -32,9 +32,9 @@ function Initial() {
                 <div className="linha" />
                 <Menu>
                     <ul>
-                        <li><a onClick={() => handleMenuSelected(1)}>Home</a> </li>
-                        <li><a onClick={() => handleMenuSelected(2)}>Pesquisar</a></li>
-                        <li><a onClick={() => handleMenuSelected(3)}>Favoritos</a></li>
+                        <li><a style={{color: selectedMenu === 1 ? '#9600BC' : '#111'}} onClick={() => handleMenuSelected(1)}>Home</a> </li>
+                        <li><a style={{color: selectedMenu === 2 ? '#9600BC' : '#111'}} onClick={() => handleMenuSelected(2)}>Pesquisar</a></li>
+                        <li><a style={{color: selectedMenu === 3 ? '#9600BC' : '#111'}} onClick={() => handleMenuSelected(3)}>Favoritos</a></li>
                     </ul>
                 </Menu>
             </Header>

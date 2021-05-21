@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Container, Searching, Result, Buttons } from './style.js';
+import { Container, Searching, Result, ResultDetails, Buttons } from './style.js';
 import icone from '../../assets/search.png';
 import api from '../../services/api';
 import { AiFillPlusCircle } from "react-icons/ai";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 function Search() {
 
@@ -12,6 +14,8 @@ function Search() {
   const [livro2, setLivro2] = useState(1);
   const [livro3, setLivro3] = useState(2);
 
+  const[favorite, setFavorite] = useState(0);
+ 
   const [numbDetalhe, setNumbDetalhe] = useState(-1);
 
   const [livroPesquisado, setLivroPesquisado] = useState({ livro: '' });
@@ -48,8 +52,25 @@ function Search() {
   }
 
   function handleDetalhes(posicaoLivro) {
-    setDisplayDiv({ detalhe: false});
+    setDisplayDiv({ detalhe: false });
     setNumbDetalhe(posicaoLivro);
+  }
+
+  function handleCloseDetails() {
+    if (!displayDiv.detalhe) {
+      setDisplayDiv({
+        detalhe: true
+      })
+      setFavorite(0)
+    }
+  }
+
+  function handleFavorite(){
+    if(favorite === 0){
+      setFavorite(1)
+    }else{
+      setFavorite(0)
+    }
   }
 
   const getInformacoes = (e) => {
@@ -58,7 +79,7 @@ function Search() {
       .then(response => {
         setInformacoes(response.data.items);
         console.log(response.data.items)
-        setDisplayDiv({ div1: false, div2: false, div3: false })
+        setDisplayDiv({ div1: false, div2: false, div3: false, detalhe: true })
       });
   }
 
@@ -68,6 +89,7 @@ function Search() {
   }
 
 
+
   return (
 
     <Container>
@@ -75,11 +97,13 @@ function Search() {
         <input type="text" onChange={(e) => { handleLivro(e) }} placeholder="Busque pelo nome do livro" />
         <button onClick={getInformacoes}><img src={icone} alt="img" /></button>
       </Searching >
-      <Result style={{ display: displayDiv.detalhe ? 'none' : 'flex', width:'55vw', height:'50vh'}}>
+      <ResultDetails style={{ display: displayDiv.detalhe ? 'none' : 'flex' }}>
+        <button className='buttonFavorite' onClick={handleFavorite}>{favorite === 0 ? <AiOutlineHeart/> : <AiFillHeart/>}</button>
+        <button onClick={handleCloseDetails}><IoMdCloseCircleOutline /></button>
         {numbDetalhe >= 0
-          ? <div style={{display: 'flex', width:'100%', height:'100%'}}>
-            <div style={{width:'250px', height:'250px'}}><img src={informacoes[numbDetalhe].volumeInfo.hasOwnProperty('imageLinks') ? informacoes[numbDetalhe].volumeInfo.imageLinks.smallThumbnail : imagemDefault}></img></div>
-            <div style={{width:'100%', height:'100px', marginLeft:'10px'}}>
+          ? <div style={{ display: 'flex', width: '100%', height: '100%', overflow: 'auto' }}>
+            <div style={{ width: '250px', height: '250px' }}><img src={informacoes[numbDetalhe].volumeInfo.hasOwnProperty('imageLinks') ? informacoes[numbDetalhe].volumeInfo.imageLinks.smallThumbnail : imagemDefault}></img></div>
+            <div style={{ width: '100%', height: '100px', marginLeft: '10px' }}>
               <p><b>Titulo:</b> {informacoes[numbDetalhe].volumeInfo.title} </p>
               <p><b>Descrição:</b> {informacoes[numbDetalhe].volumeInfo.description}</p>
               <p><b>Data de publicação:</b> {informacoes[numbDetalhe].volumeInfo.publishedDate}</p>
@@ -88,8 +112,8 @@ function Search() {
           : null
         }
 
-      </Result>
-      <Result>
+      </ResultDetails>
+      <Result style={{ display: displayDiv.detalhe ? 'flex' : 'none' }}>
         <div style={{ display: displayDiv.div1 ? 'none' : 'block' }}>
           {livro1 <= informacoes.length - 1
             ? <div style={{ height: '100%' }}>
@@ -130,7 +154,7 @@ function Search() {
           }
         </div>
       </Result>
-      <Buttons style={{ display: informacoes !== '' ? 'flex' : 'none' }}>
+      <Buttons style={{ display: informacoes !== '' && displayDiv.detalhe ? 'flex' : 'none' }}>
         <button onClick={handleReturnPosition} disabled={livro1 === 0 ? true : false}>Anterior</button>
         <button onClick={handleNextPosition} disabled={(livro1 === informacoes.length - 1 || livro2 === informacoes.length - 1 || livro3 === informacoes.length - 1) ? true : false}>Próximo</button>
       </Buttons>
