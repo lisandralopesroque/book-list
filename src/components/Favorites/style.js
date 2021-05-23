@@ -1,33 +1,52 @@
 import styled from 'styled-components';
 
+
 export const Container = styled.div`
-    width:100vw;
     height: 85vh;
     display:flex; 
     align-items: center;
-    justify-content: center;
-    flex-direction: row;
+    justify-content: space-around;
+    padding: 12px;
+
+    @media screen and (max-width:700px){
+        flex-direction: column;
+    }
 `;
 
 export const Info = styled.div`
-    height: 100%;
-    width: 50%;
+    display: flex;
+    align-items: center;
     justify-content: space-around;
-    padding:60px;
+  
     div{
-        margin-top: 100px;
-        margin-left: 100px;
+        width: 56%;
     }
     div span{
         font-size: 30px;
     }
+
+    @media screen and (max-width:700px){
+        div{
+            width:80%;
+            height:90%;
+        }
+    }     
+            
 `;
 
 export const Imagem = styled.div`
     height: 100%;
-    width: 50%;
     img{
         height: 100%;
         width: 100%;
     }
+
+    @media screen and (max-width:700px){
+        height:50%;
+        width:80%;
+        img{
+            height: 80%;
+            width: 85%;
+        }
+    }  
 `;

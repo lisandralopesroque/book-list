@@ -13,7 +13,7 @@ export const Header = styled.header`
 
     .linha{
         border: 1px solid #111;
-        width: 90vw;
+        width: 80vw;
     }
 `;
 
@@ -35,4 +35,13 @@ export const Menu = styled.div`
         cursor: pointer;
      }
     
+     @media screen and (max-width:700px){
+         ul{
+            justify-content: space-around;
+            display : flex;
+            gap: 75px;
+         }
+        
+    }
+
 ` ;

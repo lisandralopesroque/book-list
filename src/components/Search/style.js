@@ -11,13 +11,13 @@ export const Container = styled.div`
 
 export const Searching = styled.div`
     height: 5vh;
-    width: 40vw;
+    width: 50vw;
     display: flex;
     margin-top:50px;
 
     input{
         height: 5vh;
-        width: 40vw;
+        width: 50vw;
         border-radius: 20px;
         border: 1px solid #111;
         outline: none;
@@ -35,11 +35,11 @@ export const Searching = styled.div`
 `;
 
 export const Result = styled.div`
-    height: 50vh;
     width: 50vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
+
 
     div{
         height: 80%;
@@ -67,6 +67,18 @@ export const Result = styled.div`
                 width:1.5em;
                 height: 1.5em;
                 color:#9600BC;
+            }
+        }
+    }
+
+    @media screen and (max-width:700px){
+        flex-direction: column;
+        div{
+            margin-top: 20px;
+            width: 100%;
+
+            img{
+                height: 75%;
             }
         }
     }
@@ -127,6 +139,19 @@ export const ResultDetails = styled.div`
        }
     }
 
+    @media screen and (max-width:700px){
+        width:75vw;
+
+        div{
+            flex-direction: column;
+            align-items: center;
+
+            .imagem{
+                width: 185px;
+                margin-bottom: 10px;
+            }
+        }
+    }
 `;
 
 export const Buttons = styled.div`
@@ -158,6 +183,15 @@ export const Buttons = styled.div`
         :hover{
             color: #ccc ;
             background-color: transparent;
+        }
+    }
+
+    @media screen and (max-width:700px){
+        width:50vw;
+
+        button{
+            width: 20vw;
+            height:40px;
         }
     }
 

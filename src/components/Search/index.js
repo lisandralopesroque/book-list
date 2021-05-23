@@ -102,7 +102,7 @@ function Search() {
         <button onClick={handleCloseDetails}><IoMdCloseCircleOutline /></button>
         {numbDetalhe >= 0
           ? <div style={{ display: 'flex', width: '100%', height: '100%', overflow: 'auto' }}>
-            <div style={{ width: '250px', height: '250px' }}><img src={informacoes[numbDetalhe].volumeInfo.hasOwnProperty('imageLinks') ? informacoes[numbDetalhe].volumeInfo.imageLinks.smallThumbnail : imagemDefault}></img></div>
+            <div className='imagem' style={{ width: '250px', height: '250px' }}><img src={informacoes[numbDetalhe].volumeInfo.hasOwnProperty('imageLinks') ? informacoes[numbDetalhe].volumeInfo.imageLinks.smallThumbnail : imagemDefault}></img></div>
             <div style={{ width: '100%', height: '100px', marginLeft: '10px' }}>
               <p><b>Titulo:</b> {informacoes[numbDetalhe].volumeInfo.title} </p>
               <p><b>Descrição:</b> {informacoes[numbDetalhe].volumeInfo.description}</p>
