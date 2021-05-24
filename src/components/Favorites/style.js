@@ -13,40 +13,38 @@ export const Container = styled.div`
     }
 `;
 
-export const Info = styled.div`
-    display: flex;
+export const ResultDetails = styled.div`
     align-items: center;
+    display: flex;
     justify-content: space-around;
-  
+    position: absolute;
+    width:55vw;
+    height:50vh;
+    padding: 40px 8px 8px 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+   
     div{
-        width: 56%;
-    }
-    div span{
-        font-size: 30px;
+        height: 80%;
+        width: 200px;
+       
+       img{
+           height: 100%;
+           width: 100%;
+       }
     }
 
     @media screen and (max-width:700px){
+        width:75vw;
+
         div{
-            width:80%;
-            height:90%;
-        }
-    }     
-            
-`;
+            flex-direction: column;
+            align-items: center;
 
-export const Imagem = styled.div`
-    height: 100%;
-    img{
-        height: 100%;
-        width: 100%;
+            .imagem{
+                width: 185px;
+                margin-bottom: 10px;
+            }
+        }
     }
-
-    @media screen and (max-width:700px){
-        height:50%;
-        width:80%;
-        img{
-            height: 80%;
-            width: 85%;
-        }
-    }  
 `;

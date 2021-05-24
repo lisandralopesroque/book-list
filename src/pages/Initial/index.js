@@ -7,6 +7,11 @@ import {Header, Menu} from './style.js';
 function Initial() {
 
     const [selectedMenu, setSelectedMenu] = useState(1);
+    const [dadosFavoritos, setDadosFavoritos] = useState();
+    
+    function addFavorites(dados){
+        setDadosFavoritos(dados);
+    }
 
     function handleMenuSelected(menuIndex){
         setSelectedMenu(menuIndex);
@@ -18,10 +23,10 @@ function Initial() {
                 return <Home />
 
             case 2:
-                return <Search />
+                return <Search addFavorites={addFavorites}/>
 
             case 3:
-                return <Favorites />
+                return <Favorites favoritos={dadosFavoritos} />
 
         }
     }

@@ -6,7 +6,7 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-function Search() {
+function Search(props) {
 
   const imagemDefault = 'https://camo.githubusercontent.com/b7b7dca15c743879821e7cfc14e8034ecee3588e221de0a6f436423e304d95f5/68747470733a2f2f7a7562652e696f2f66696c65732f706f722d756d612d626f612d63617573612f33363664616462316461323032353338616531333332396261333464393030362d696d6167652e706e67';
 
@@ -68,6 +68,7 @@ function Search() {
   function handleFavorite(){
     if(favorite === 0){
       setFavorite(1)
+      props.addFavorites(informacoes[numbDetalhe].volumeInfo)
     }else{
       setFavorite(0)
     }
@@ -78,7 +79,6 @@ function Search() {
     api.get('books/v1/volumes?q=' + livroPesquisado)
       .then(response => {
         setInformacoes(response.data.items);
-        console.log(response.data.items)
         setDisplayDiv({ div1: false, div2: false, div3: false, detalhe: true })
       });
   }
